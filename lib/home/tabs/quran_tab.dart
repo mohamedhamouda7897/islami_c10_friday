@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_c10_friday/sura_details.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({super.key});
@@ -153,10 +154,15 @@ class QuranTab extends StatelessWidget {
               color: Color(0xFFB7935F),
             ),
             itemBuilder: (context, index) {
-              return Text(
-                suraName[index],
-                style: GoogleFonts.elMessiri(fontSize: 20),
-                textAlign: TextAlign.center,
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, SuraDetailsScreen.routeName);
+                },
+                child: Text(
+                  suraName[index],
+                  style: GoogleFonts.elMessiri(fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               );
             },
             itemCount: suraName.length,
