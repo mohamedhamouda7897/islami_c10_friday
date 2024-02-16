@@ -37,7 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.3.10
   google_fonts: ^6.1.0
-
+  provider: ^6.1.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,7 +57,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true # Add this line
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -63,6 +66,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/files/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

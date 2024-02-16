@@ -1,43 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_c10_friday/hadeth_model.dart';
 import 'package:islami_c10_friday/providers/my_provider.dart';
-import 'package:islami_c10_friday/sura_model.dart';
 import 'package:provider/provider.dart';
 
-class SuraDetailsScreen extends StatefulWidget {
-  static const String routeName = "SuraDetails";
-
-  SuraDetailsScreen({super.key});
-
-  @override
-  State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
-}
-
-class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
-  List<String> verses = [];
+class HadethDetailsScreen extends StatelessWidget {
+  static const String routeName="hadethDetails";
+  const HadethDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var model = ModalRoute.of(context)!.settings.arguments as SuraModel;
-
     var provider = Provider.of<MyProvider>(context);
-    if (verses.isEmpty) {
-      loadFile(model.index);
-    }
-
-    print(verses.length);
+    var model=ModalRoute.of(context)!.settings.arguments as HadethModel;
     return Stack(
       children: [
         Image.asset(
-         provider.getBackgroundImagePath(),
+          provider.getBackgroundImagePath(),
           width: double.infinity,
           fit: BoxFit.fill,
         ),
         Scaffold(
           appBar: AppBar(
             title: Text(
-              model.name,
+              model.title,
             ),
           ),
           body: Card(
@@ -57,24 +41,16 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
               ),
               itemBuilder: (context, index) {
                 return Text(
-                  verses[index],
+                  model.content[index],
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium,
                 );
               },
-              itemCount: verses.length,
+              itemCount: model.content.length,
             ),
           ),
         ),
       ],
     );
-  }
-
-  Future<void> loadFile(int index) async {
-    String sura = await rootBundle.loadString("assets/files/${index + 1}.txt");
-    List<String> lines = sura.split("\n");
-    verses = lines;
-    print(sura);
-    setState(() {});
   }
 }
